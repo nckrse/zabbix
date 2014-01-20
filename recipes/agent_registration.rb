@@ -7,6 +7,7 @@
 
 unless Chef::Config[:solo]
   zabbix_server = search(:node, "recipe:zabbix\\:\\:server").first
+  Chef::Log.info "Using Zabbix server #{zabbix_server.name}"
 else 
   if node['zabbix']['web']['fqdn']
     zabbix_server = node

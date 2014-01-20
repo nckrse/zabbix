@@ -163,7 +163,11 @@ action :update do
       acc << template
     end
 
-    existing_interfaces = host["interfaces"].values.map { |interface| Chef::Zabbix::API::HostInterface.from_api_response(interface).to_hash }
+    begin
+      existing_interfaces = host["interfaces"].values.map { |interface| Chef::Zabbix::API::HostInterface.from_api_response(interface).to_hash }
+    rescue
+      existing_interfaces = host["interfaces"].map { |interface| Chef::Zabbix::API::HostInterface.from_api_response(interface).to_hash }
+    end
     new_host_interfaces = determine_new_host_interfaces(existing_interfaces, params_incoming[:interfaces].map(&:to_hash))
 
     host_update_request = {
