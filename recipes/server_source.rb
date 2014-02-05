@@ -87,6 +87,11 @@ when 'oracle'
   configure_options << with_oracle_lib unless configure_options.include?(with_oracle_lib)
   configure_options << with_oracle_include unless configure_options.include?(with_oracle_include)
 end
+
+if node['zabbix']['server']['java_gateway_enable'] == true
+  configure_options << "--enable-java"
+end
+
 node.normal['zabbix']['server']['configure_options'] = configure_options
 
 zabbix_source "install_zabbix_server" do
@@ -135,4 +140,9 @@ end
 service "zabbix_server" do
   supports :status => true, :start => true, :stop => true, :restart => true
   action [ :start, :enable ]
+end
+
+# Configure the Java Gateway
+if node['zabbix']['server']['java_gateway_enable'] == true
+  include_recipe "zabbix::java_gateway"
 end
