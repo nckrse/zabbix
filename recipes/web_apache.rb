@@ -20,7 +20,7 @@ end
 
 user node['zabbix']['web']['user']
 
-node['zabbix']['web']['packages'] =
+node.normal['zabbix']['web']['packages'] =
   case node['platform_family']
   when "debian"
     %w{ php5-mysql php5-gd libapache2-mod-php5 }
