@@ -26,10 +26,7 @@ DatabaseList.QueryListFile=/etc/zabbix/orabbix-query.props
 # TODO: Store SID as node attribute
 # TODO: Generate password upon node registration
 <% @db_servers.each do |server| %>
-    <%= @server.name %>.Url=jdbc:oracle:thin:@<%= @server.name %>:1521:XE
-    <%= @server.name %>.User=zabbix
-    <%= @server.name %>.Password=yojmaukpa
-    <%= @server.name %>.QueryListFile=/etc/zabbix/orabbix-query.props
+    <%= "#{server.name}.Url=jdbc:oracle:thin:@#{server.name}:1521:XE" %>
 <% end %>
 # fgtd-learn0-generic0-db001.mhint.Url=jdbc:oracle:thin:@10.111.111.10:1521:XE
 # fgtd-learn0-generic0-db001.mhint.User=zabbix
