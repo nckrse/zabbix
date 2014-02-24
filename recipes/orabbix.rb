@@ -12,7 +12,7 @@ template "/etc/zabbix/orabbix.props" do
   group "zabbix"
   mode "0644"
   variables({
-    db_servers: => db_servers
+    :db_servers => db_servers
   })
   # TODO: Add notifies later once template rendering is OK
 end
