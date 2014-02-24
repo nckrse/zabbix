@@ -1,0 +1,38 @@
+# TODO: Source from node search for Zabbix proxy in current DC
+ZabbixServerList=fgtd-000000-zabbixdev111111-appdb
+fgtd-000000-zabbixdev111111-appdb.Address=10.111.111.5
+fgtd-000000-zabbixdev111111-appdb.Port=10051
+
+
+OrabbixDaemon.PidFile=/var/run/zabbix/orabbix.pid
+OrabbixDaemon.Sleep=300
+# TODO: Replace with node search of all DB servers in selected DC
+OrabbixDaemon.MaxThreadNumber=100
+
+DatabaseList=fgtd-learn0-generic0-db001.mhint
+
+# No limit to connections within pool
+DatabaseList.MaxActive=-1
+# Wait up to one minute for a connection to be usable
+DatabaseList.MaxWait=60000
+# Max 100 idle connections
+DatabaseList.MaxIdle=100
+# TODO: Put in /etc/zabbix
+DatabaseList.QueryListFile=/etc/zabbix/orabbix-query.props
+
+#
+# Server list
+#
+# TODO: Store SID as node attribute
+# TODO: Generate password upon node registration
+<% @db_servers.each do |server| %>
+    <%= @server.name %>.Url=jdbc:oracle:thin:@<%= @server.name %>:1521:XE
+    <%= @server.name %>.User=zabbix
+    <%= @server.name %>.Password=yojmaukpa
+    <%= @server.name %>.QueryListFile=/etc/zabbix/orabbix-query.props
+<% end %>
+# fgtd-learn0-generic0-db001.mhint.Url=jdbc:oracle:thin:@10.111.111.10:1521:XE
+# fgtd-learn0-generic0-db001.mhint.User=zabbix
+# fgtd-learn0-generic0-db001.mhint.Password=yojmaukpa
+# fgtd-learn0-generic0-db001.mhint.QueryListFile=/opt/orabbix/conf/query.props
+
