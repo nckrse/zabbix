@@ -213,6 +213,11 @@ end
 
 def load_current_resource
   run_context.include_recipe "zabbix::_providers_common"
+  chef_gem "zabbixapi" do
+      action :install
+      version "~> 0.6.3"
+  end
+
   require 'zabbixapi'
 end
 

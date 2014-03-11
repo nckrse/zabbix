@@ -18,6 +18,11 @@ else
   end
 end
 
+chef_gem "zabbixapi" do
+    action :install
+    version "~> 0.6.3"
+end
+
 connection_info = {
   :url => "http://#{zabbix_server['zabbix']['web']['fqdn']}/api_jsonrpc.php",
   :user => zabbix_server['zabbix']['web']['login'],
