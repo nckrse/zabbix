@@ -1,4 +1,10 @@
 action :create_or_update do
+  chef_gem "zabbixapi" do
+      action :install
+      version "~> 0.6.3"
+  end
+
+  require 'zabbixapi'
   Chef::Zabbix.with_connection(new_resource.server_connection) do |connection|
     get_host_request = {
       :method => "host.get",
@@ -22,6 +28,12 @@ action :create_or_update do
 end
 
 action :create do
+  chef_gem "zabbixapi" do
+      action :install
+      version "~> 0.6.3"
+  end
+
+  require 'zabbixapi'
   Chef::Zabbix.with_connection(new_resource.server_connection) do |connection|
 
     all_are_host_interfaces = new_resource.interfaces.all? { |interface| interface.kind_of?(Chef::Zabbix::API::HostInterface) }
@@ -112,6 +124,12 @@ action :create do
 end
 
 action :update do
+  chef_gem "zabbixapi" do
+      action :install
+      version "~> 0.6.3"
+  end
+
+  require 'zabbixapi'
   Chef::Zabbix.with_connection(new_resource.server_connection) do |connection|
 
     get_host_request = {
