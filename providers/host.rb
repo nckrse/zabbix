@@ -1,7 +1,7 @@
 action :create_or_update do
   chef_gem "zabbixapi" do
       action :install
-      version "~> 0.6.3"
+      version "= 0.6.4"
   end
 
   require 'zabbixapi'
@@ -30,7 +30,7 @@ end
 action :create do
   chef_gem "zabbixapi" do
       action :install
-      version "~> 0.6.3"
+      version "= 0.6.4"
   end
 
   require 'zabbixapi'
@@ -126,7 +126,7 @@ end
 action :update do
   chef_gem "zabbixapi" do
       action :install
-      version "~> 0.6.3"
+      version "= 0.6.4"
   end
 
   require 'zabbixapi'
@@ -215,7 +215,7 @@ def load_current_resource
   run_context.include_recipe "zabbix::_providers_common"
   chef_gem "zabbixapi" do
       action :install
-      version "~> 0.6.3"
+      version "= 0.6.4"
   end
 
   require 'zabbixapi'
