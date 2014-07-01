@@ -15,8 +15,6 @@ package 'redhat-lsb' if node['platform_family'] == 'rhel'
 ark 'zabbix_agent' do
   name 'zabbix'
   url node['zabbix']['agent']['prebuild']['url']
-  owner node['zabbix']['agent']['user']
-  group node['zabbix']['agent']['group']
   action :put
   path '/opt'
   strip_components 0

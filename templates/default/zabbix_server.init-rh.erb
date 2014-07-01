@@ -37,9 +37,6 @@ if [ ! -x "$DAEMON" ]; then
 }
 fi
 
-[ -d "$DIR" ] || mkdir "$DIR"
-chown -R zabbix:zabbix "$DIR"
-
 start()
 {
   start_daemon -p $PID $DAEMON $OPTS
