@@ -10,9 +10,6 @@ PID=<%= node.zabbix.run_dir %>/$NAME.pid
 
 test -f $DAEMON || exit 0
 
-[ -d "$DIR" ] || mkdir "$DIR"
-chown -R zabbix:zabbix "$DIR"
-
 case "$1" in
   start)
         echo "Starting $DESC: $NAME"

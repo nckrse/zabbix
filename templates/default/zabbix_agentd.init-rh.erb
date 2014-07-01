@@ -38,9 +38,6 @@ if [ ! -x "$DAEMON" ]; then
 }
 fi
 
-[ -d "$DIR" ] || mkdir "$DIR"
-chown -R $USER:$GROUP "$DIR"
-
 start()
 {
   start_daemon -p $PID -u $USER $DAEMON -c <%= node['zabbix']['agent']['config_file'] %>
