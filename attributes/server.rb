@@ -9,7 +9,7 @@ default['zabbix']['server']['include_dir']            = '/opt/zabbix/server_incl
 default['zabbix']['server']['log_file']               = ::File.join(node['zabbix']['log_dir'], 'zabbix_server.log')
 default['zabbix']['server']['log_level']              = 3
 default['zabbix']['server']['housekeeping_frequency'] = '1'
-default['zabbix']['server']['max_housekeeper_delete'] = '100_000'
+default['zabbix']['server']['max_housekeeper_delete'] = 100_000
 
 default['zabbix']['server']['host'] = 'localhost'
 default['zabbix']['server']['port'] = 100_51
