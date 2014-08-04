@@ -9,7 +9,16 @@ if !Chef::Config[:solo]
   zabbix_server = search(:node, 'recipe:zabbix\\:\\:server').first
 else
   if node['zabbix']['web']['fqdn']
-    zabbix_server = node
+    # Create a fake "node" for Solo purposes
+    zabbix_server = {
+      'zabbix' => {
+        'web' => {
+          'fqdn' => node['zabbix']['web']['fqdn'],
+          'login' => node['zabbix']['web']['login'],
+          'password' => node['zabbix']['web']['password']
+	}
+      }
+    }
   else
     Chef::Log.warn('This recipe uses search. Chef Solo does not support search.')
     Chef::Log.warn("If you did not set node['zabbix']['web']['fqdn'], the recipe will fail")
