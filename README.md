@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/laradji/zabbix.png?branch=master)](https://travis-ci.org/laradji/zabbix)
+[![Build Status](https://travis-ci.org/nckrse/zabbix.png?branch=master)](https://travis-ci.org/nckrse/zabbix)
 
 # DESCRIPTION
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/laradji/zabbix?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
