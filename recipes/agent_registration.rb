@@ -9,12 +9,31 @@ if !Chef::Config[:solo]
   zabbix_server = search(:node, 'recipe:zabbix\\:\\:server').first
 else
   if node['zabbix']['web']['fqdn']
-    zabbix_server = node
+    # Create a fake "node" for Solo purposes
+    zabbix_server = {
+      'zabbix' => {
+        'web' => {
+          'fqdn' => node['zabbix']['web']['fqdn'],
+          'login' => node['zabbix']['web']['login'],
+          'password' => node['zabbix']['web']['password']
+	}
+      }
+    }
   else
     Chef::Log.warn('This recipe uses search. Chef Solo does not support search.')
     Chef::Log.warn("If you did not set node['zabbix']['web']['fqdn'], the recipe will fail")
     return
   end
+end
+
+chef_gem "zabbixapi" do
+    action :remove
+    version "= 0.6.6"
+end
+
+chef_gem "zabbixapi" do
+    action :install
+    version "= 0.6.4"
 end
 
 connection_info = {
@@ -72,15 +91,21 @@ interface_list.each do |interface|
   end
 end
 
+host_parameters = {
+  :host => node['hostname'],
+  :groupNames => node['zabbix']['agent']['groups'],
+  :templates => node['zabbix']['agent']['templates'],
+  :interfaces => interface_data
+}
+
+if node['zabbix']['agent']['my_proxy']
+  host_parameters[:my_proxy] = node['zabbix']['agent']['my_proxy']
+end
+
 zabbix_host node['zabbix']['agent']['hostname'] do
   create_missing_groups true
   server_connection connection_info
-  parameters(
-    :host => node['hostname'],
-    :groupNames => node['zabbix']['agent']['groups'],
-    :templates => node['zabbix']['agent']['templates'],
-    :interfaces => interface_data
-  )
+  parameters host_parameters
   action :nothing
 end
 

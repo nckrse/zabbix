@@ -42,8 +42,12 @@ default['zabbix']['agent']['start_agents']       = nil # default (3)
 default['zabbix']['agent']['debug_level']        = nil # default (3)
 default['zabbix']['agent']['templates']          = []
 default['zabbix']['agent']['interfaces']         = ['zabbix_agent']
+<<<<<<< HEAD
 default['zabbix']['agent']['jmx_port']           = '10052'
 default['zabbix']['agent']['zabbix_agent_port']  = '10050'
 default['zabbix']['agent']['snmp_port']          = '161'
 
+=======
+>>>>>>> ftclausen/bb-mega-merge
 default['zabbix']['agent']['user_parameter'] = []
+default['zabbix']['agent']['my_proxy'] = nil # If using a proxy then override this in your wrapper cookbook

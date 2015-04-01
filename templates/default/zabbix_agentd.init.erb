@@ -25,9 +25,6 @@ GROUP=<%= node['zabbix']['agent']['group'] %>
 
 test -f $DAEMON || exit 0
 
-[ -d "$DIR" ] || mkdir "$DIR"
-chown -R $USER:$GROUP "$DIR"
-
 set -e
 
 case "$1" in

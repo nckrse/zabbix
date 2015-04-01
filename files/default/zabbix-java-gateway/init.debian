@@ -60,8 +60,6 @@ _ev_ () {
   [ "$VERBOSE" = "no" ] || eval $@
 }
 
-[ -d "$DIR" ] || mkdir "$DIR"
-chown -R zabbix:zabbix "$DIR"
 export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
 
 case "$1" in
@@ -101,6 +99,7 @@ case "$1" in
   ;;
   restart|force-reload)
     $0 stop
+    sleep 3
     $0 status >/dev/null \
     &&  exit 1  \
     || $0 start
