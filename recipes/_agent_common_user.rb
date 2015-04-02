@@ -2,7 +2,7 @@
 # managed home directories.
 manage_home = true # most distros do support managed home so leave at true
 if (node['platform_family'] == 'rhel')
-  rhel_major = (node['platform_version'].match (/^([0-9]+)\.[0-9]+/)[1].to_i
+  rhel_major = (/[0-9]+\.[0-9]+/.match(node['platform_version']))[1].to_i
   rhel_major <= 5 && manage_home = false
 end
 
