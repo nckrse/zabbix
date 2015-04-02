@@ -16,7 +16,7 @@ else
           'fqdn' => node['zabbix']['web']['fqdn'],
           'login' => node['zabbix']['web']['login'],
           'password' => node['zabbix']['web']['password']
-	}
+        }
       }
     }
   else
@@ -26,14 +26,14 @@ else
   end
 end
 
-chef_gem "zabbixapi" do
-    action :remove
-    version "= 0.6.6"
+chef_gem 'zabbixapi' do
+  action :remove
+  version '= 0.6.6'
 end
 
-chef_gem "zabbixapi" do
-    action :install
-    version "= 0.6.4"
+chef_gem 'zabbixapi' do
+  action :install
+  version '= 0.6.4'
 end
 
 connection_info = {
