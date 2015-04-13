@@ -126,4 +126,4 @@ if node['zabbix']['proxy']['enabled'] == true
 end
 
 node.normal['zabbix']['server']['configure_options'] = configure_options
-node.save
+node.save unless Chef::Config[:solo]
